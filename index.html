@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据可视化</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/flexible.js"></script>
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>数据可视化</h1>
+        <div id="dateStr">hello</div>
+    </div>
+    <div class="main">
+        <div class="panel">
+            <div class="item">
+                <div id="pillar" class="graph"></div>
+                <div class="left-border"></div>
+                <div class="right-border"></div>
+            </div>
+            <div class="item">
+                <div id="line" class="graph"></div>
+                <div class="left-border"></div>
+                <div class="right-border"></div>
+            </div>
+            <div class="item">
+                <div id="pie" class="graph"></div>
+                <div class="left-border"></div>
+                <div class="right-border"></div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="top">
+                <div class="number">
+                    <span>126780</span>
+                    <span>5820</span>
+                </div>
+                <div class="commont">
+                    <span>前端需求人数</span><span>市场供应人数</span>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="circle-bg"></div>
+                <div class="circle-bg2"></div>
+                <div class="circle-bg3"></div>
+                <div id="map"></div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="item">
+                <div id="reversePillar" class="graph"></div>
+                <div class="left-border"></div>
+                <div class="right-border"></div>
+            </div>
+            <div class="item">
+                <div id="fillLine" class="graph"></div>
+                <div class="left-border"></div>
+                <div class="right-border"></div>
+            </div>
+            <div class="item">
+                <div id="fillPie" class="graph"></div>
+                <div class="left-border"></div>
+                <div class="right-border"></div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/draw.js"></script>
+    <script src="./js/china.js"></script>
+    <script>
+        //获取日期及时间字符串
+        function getDateStr(){
+            let date = new Date();
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            let hour = date.getHours();
+            if(parseInt(hour) < 10){
+                hour = "0" + hour;
+            }
+            let minites = date.getMinutes();
+            if(parseInt(minites) < 10){
+                minites = "0" + minites;
+            }
+            let second = date.getSeconds();
+            if(parseInt(second) < 10){
+                second = "0" + second;
+            }
+            return "当前时间：" + year + "年" + month + "月" + day + "日 " + hour + ":" + minites + ":" + second; 
+        }
+        //设置定时器
+        function timer(){
+            let t = setInterval(() => {
+                document.getElementById('dateStr').innerHTML = getDateStr();
+            }, 1000);
+        }
+        timer();
+        drawPillar();
+        drawReversePillar();
+        drawLine();
+        drawFillLine();
+        drawCake();
+        drawFillPie();
+        drawFight();
+    </script>
+</body>
+</html>
